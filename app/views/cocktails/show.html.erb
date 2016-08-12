@@ -1,6 +1,19 @@
-<div class="container">
+<div class="container padded">
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-3"></div>
-    <h1> Hello Mister Cocktail</h1>
+    <div class="col-sm-4 col-sm-offset-4"></div>
+    <h1><%= @cocktail.name %></h1>
+    <h4>Ingredients :</h4>
+    <ul class="list-unstyled">
+      <% @cocktail.doses.each do |dose| %>
+      <li>
+        <%= dose.ingredient.name %> (<%= dose.description %>)
+      <%= link_to 'Delete Dose', dose_path(dose), class: "btn btn-primary", method: "delete" %> </li>
+      <% end %>
+    </ul>
+    <%= link_to 'Back', cocktails_path, class: "btn btn-primary" %>
+    <%= link_to 'Add Dose', new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+
   </div>
 </div>
+
+
